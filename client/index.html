@@ -4,6 +4,7 @@
 <head>
   <title>Title appli test</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/custom.css">
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <style>
     body {
@@ -34,15 +35,15 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
           <div class="item active">
-            <img src="img/woman-sea.jpg" alt="canon" width="460" height="345">
+            <img src="img/woman-sea.jpg" alt="canon">
           </div>
     
           <div class="item">
-            <img src="/img/girl.jpg" alt="girl" width="460" height="345">
+            <img src="/img/girl.jpg" alt="girl">
           </div>
         
           <div class="item">
-            <img src="/img/whales.jpg" alt="whales" width="460" height="345">
+            <img src="/img/aiguebellette 2015.jpg" alt="whales">
           </div>
         </div>
     
@@ -121,7 +122,6 @@
         <form name="searchElementForm" ng-controller="MediaController" ng-submit="MediaController.search(MediaController.newtag.name)">
 
           <!--  Live Preview -->
-          <ul>
             <h4>results</h4>
 
             <p ng-show="MediaController.bfound">A été trouvé:</p>
@@ -129,7 +129,6 @@
               <strong>title:{{MediaController.newtag.title}} </strong> short name: {{MediaController.newtag.name}}
               <cite class="clearfix">—</cite>
             </blockquote>
-          </ul>
           <fieldset class="form-group">
             <input ng-model="MediaController.newtag.name" class="form-control" placeholder="Write a short review of the element..." title="Review">
             </textarea>
