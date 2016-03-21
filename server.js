@@ -4,8 +4,9 @@ var path = require('path');
 var socketio = require('socket.io');
 var express = require('express');
 var favicon = require('serve-favicon');
-var webSocketManager = require("./webSocketManager");
 
+var webSocketManager = require("./webSocketManager");
+var students = require("./students");
 //
 // ## SimpleServer `SimpleServer(obj)`
 //
@@ -14,6 +15,7 @@ var webSocketManager = require("./webSocketManager");
 //
 var router = express();
 router.use(favicon(__dirname + '/favicon.ico'))
+router.get('/students', students.getStudents);
 var server = http.createServer(router);
 var io = socketio.listen(server);
 
