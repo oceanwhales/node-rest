@@ -60,6 +60,16 @@
       </div>
     </div>
   </div>
+  
+  <nav class="navbar-default navbar-left myNavbar ">
+    <ul>
+      Mon menu de navigation
+      <li><a href="#"> fonction 1</a></li>
+      <li><a href="#"> fonction 2</a></li>
+      <li><a href="#"> fonction 3</a></li>
+      <li><a href="#"> fonction 4</a></li>
+    </ul>
+  </nav>
 
   <div class="container">
     <div class="jumbotron">
@@ -87,33 +97,19 @@
   </div>
     
   <div class="container-fluid">
-    <h1 class="page-header">Appli de test</h1>
-
-    <nav class="navbar-default navbar-left myNavbar ">
-      <ul>
-        Mon menu de navigation
-        <li><a href="#"> fonction 1</a></li>
-        <li><a href="#"> fonction 2</a></li>
-        <li><a href="#"> fonction 3</a></li>
-        <li><a href="#"> fonction 4</a></li>
-      </ul>
-    </nav>
-
-
     <h4>Elèves inscrits</h4>
-    <div ng-controller="exampleController" class="mainSection">
-      <br>
-      <h4>text : {{data.text}}</h2>
-      <span ng-repeat="word in data.phrase">{{word}}</span>
-
-      <ul>
-        <li ng-repeat="student in data.students">
-          <blockquote>
-            <strong>Elève: {{student.name}} </strong> {{student.firstname}}
-            <cite class="clearfix">—</cite>
-          </blockquote>
-        </li>
-      </ul>
+    <div class="mainSection">
+      <div ng-controller="FamillyController" class="student-list">
+        <br>
+        <ul>
+          <li ng-repeat="student in data.students">
+            <blockquote>
+              <strong>Elève: {{student.name}} </strong> {{student.firstname}}
+              <cite class="clearfix">—</cite>
+            </blockquote>
+          </li>
+        </ul>
+      </div>
 
       <form name="searchElementForm" ng-controller="FamillyController">
 

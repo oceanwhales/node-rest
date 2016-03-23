@@ -4,29 +4,13 @@
    var app = angular.module('chatClient', []);
 
    var data = {
-      text: 'hello',
-      phrase: ['how ', 'are ', 'you', '?'],
-      canRespond: true,
-      students: [{
-         name: "dupond",// now erased by refresh from serverkkkk
-         firstname: "jean"
-      }]
+      students: []
    };
-
-   var searchReview = {
-      results: []
-   }
-
-   app.controller('exampleController', ['$scope', function($scope) {
-
-      data.text += " you";
-      $scope.data = data;
-      return data;
-   }]);
 
    app.controller('FamillyController', ['$scope', '$http', function($scope, $http) {
       $scope.newStudent = {};
       $scope.bfound = false;
+      $scope.data = data; // important for databinding
       
       $scope.search  = function(studentSeek) {
          return _.cloneDeep(_.find(data.students, {
@@ -52,7 +36,6 @@
                .then(
                    function success(response){
                         data.students.push(student);
-                        searchReview.results.push(student);
                         $scope.dataStatus = "ok";
                    }, 
                    function failure(response){
@@ -77,8 +60,6 @@
          if (!found) {
             this.createStudent(studentSeek);
          }
-         
-         return searchReview;
       };
 
    }]);
