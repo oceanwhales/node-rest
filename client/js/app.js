@@ -8,7 +8,7 @@
       phrase: ['how ', 'are ', 'you', '?'],
       canRespond: true,
       students: [{
-         name: "dupond",// now erased by refresh from server
+         name: "dupond",// now erased by refresh from serverkkkk
          firstname: "jean"
       }]
    };
@@ -36,16 +36,31 @@
       
       $scope.refreshModel  = function() {
          $http({
-            method : "GET",
-            url : "/students"
-         }).then(function mySucces(response) {
-            data.students = response.data;
-            $scope.dataStatus = "ok";
-         }, function myError(response) {
-            $scope.dataStatus = response.statusText;
+               method : "GET",
+               url : "/students"
+            }).then(function mySucces(response) {
+               data.students = response.data;
+               $scope.dataStatus = "ok";
+            }, function myError(response) {
+               $scope.dataStatus = response.statusText;
          });
       }
 
+      $scope.createStudent  = function(student) {
+         var config = {headers: {"contentType": "application/json"}};
+            $http.post("/addstudent", student, config)
+               .then(
+                   function success(response){
+                        data.students.push(student);
+                        searchReview.results.push(student);
+                        $scope.dataStatus = "ok";
+                   }, 
+                   function failure(response){
+                      $scope.dataStatus = response.statusText;
+                   }
+                );
+      }
+      
       $scope.searchAdd = function(studentSeek) {
          
          if (!studentSeek) {
@@ -60,8 +75,7 @@
          this.newStudent = found;
          
          if (!found) {
-            data.students.push(studentSeek);
-            searchReview.results.push(studentSeek);
+            this.createStudent(studentSeek);
          }
          
          return searchReview;

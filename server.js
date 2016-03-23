@@ -1,12 +1,14 @@
 var http = require('http');
 var path = require('path');
+var morgan = require('morgan');
 
 var socketio = require('socket.io');
 var express = require('express');
+var bodyParser = require("body-parser");
 var favicon = require('serve-favicon');
 
 var webSocketManager = require("./webSocketManager");
-var students = require("./students");
+var students = require("./chatNode/students");
 //
 // ## SimpleServer `SimpleServer(obj)`
 //
@@ -14,8 +16,13 @@ var students = require("./students");
 //  * `port` - The HTTP port to listen on. If `process.env.PORT` is set, _it overrides this value_.
 //
 var router = express();
-router.use(favicon(__dirname + '/favicon.ico'))
+router.use(morgan('combined'));//log
+router.use(favicon(__dirname + '/favicon.ico'));
+router.use(bodyParser.json()); // support json encoded bodies
+router.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 router.get('/students', students.getStudents);
+router.post('/addstudent', students.addStudent);
+
 var server = http.createServer(router);
 var io = socketio.listen(server);
 
