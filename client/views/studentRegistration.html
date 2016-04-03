@@ -1,0 +1,45 @@
+<nav-bar>
+</nav-bar>
+
+<div class="row">
+  <div class="col-lg-3 col-lg-offset-1">
+    <h4>Elèves inscrits</h4>
+    <div class="mainSection">
+      <div ng-controller="FamillyController" class="student-list">
+        <br>
+        <ul>
+          <li ng-repeat="student in data.students">
+            <blockquote>
+              <strong>Elève: {{student.name}} </strong> {{student.firstname}}
+              <cite class="clearfix">—</cite>
+            </blockquote>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <form name="searchElementForm" ng-controller="FamillyController">
+
+      <!--  Live Preview -->
+      <h4>Ajouter un élève</h4>
+
+      <p ng-show="bfound">A été trouvé:</p>
+      <blockquote ng-init="refreshModel()">
+        nom:{{newStudent.firstname}} <strong> {{newStudent.name}}</strong>
+      </blockquote>
+
+      <fieldset class="form-group">
+        <input ng-model="newStudent.firstname" class="form-control" placeholder="Prénom de l'élève..." title="Prénom">
+        <input ng-model="newStudent.name" class="form-control" placeholder="Nom de l'élève..." title="Nom">
+      </fieldset>
+      <fieldset class="form-group">
+        <input type="submit" class="btn btn-primary pull-right" ng-click="searchAdd(newStudent)" value="Ajouter" />
+      </fieldset>
+      <cite class="clearfix">—</cite>
+    </form>
+  </div>
+</div>
