@@ -19,3 +19,14 @@ app.config(function($routeProvider) {
          redirectTo: '/'
       });
 });
+
+
+app.run(function($rootScope, $location) {
+
+   $rootScope.$on('$routeChangeSuccess', function(event, next, current) {
+      if (!$rootScope.history) {
+         $rootScope.history = [];
+      }
+      $rootScope.history.push($location.path());
+   });
+});

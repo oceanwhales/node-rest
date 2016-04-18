@@ -5,10 +5,22 @@ var data = {
     students: []
 };
 
-app.controller('FamillyController', ['$scope', '$http', function($scope, $http) {
+app.controller('FamillyController', ['$scope', '$http', '$rootScope', '$location', function($scope, $http, $rootScope, $location, $window) {
     $scope.newStudent = {};
     $scope.bfound = false;
     $scope.data = data; // important for databinding
+
+        
+    var original = $rootScope.history[$rootScope.history.length -4];
+    var previous = $rootScope.history[$rootScope.history.length -2];
+    var current = $rootScope.history[$rootScope.history.length -1];
+    if (!$rootScope.logged) {
+        if (previous === "/login") {
+            $location.path(original);
+        } else {
+            $location.path("/login");
+        }
+    }
 
     $scope.search = function(studentSeek) {
         return _.cloneDeep(_.find(data.students, {
